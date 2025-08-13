@@ -1,6 +1,6 @@
 import os
 import shutil
-from typing import Optional, Union, List
+from typing import Optional, Union, List, TYPE_CHECKING
 from scripts.paths import VECTOR_DB_DIR
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -25,7 +25,7 @@ def initialize_db(
     persist_directory: str = VECTOR_DB_DIR,
     collection_name: str = "publications",
     delete_existing: bool = False,
-) -> Optional[Union[chromadb.Collection, bool]]:
+) -> Optional[Union["chromadb.Collection", bool]]:
     """
     Initialize a ChromaDB instance and persist it to disk.
     Falls back gracefully if ChromaDB is not available.
@@ -73,7 +73,7 @@ def initialize_db(
 def get_db_collection(
     persist_directory: str = VECTOR_DB_DIR,
     collection_name: str = "publications",
-) -> Optional[Union[chromadb.Collection, bool]]:
+) -> Optional[Union["chromadb.Collection", bool]]:
     """
     Get a ChromaDB client instance.
     Falls back gracefully if ChromaDB is not available.
@@ -116,7 +116,7 @@ def embed_documents(documents: List[str]) -> List[List[float]]:
     return embeddings
 
 
-def insert_publications(collection: Union[chromadb.Collection, bool], publications: List[str]):
+def insert_publications(collection: Union["chromadb.Collection", bool], publications: List[str]):
     """
     Insert documents into a ChromaDB collection.
     Falls back gracefully if ChromaDB is not available.
