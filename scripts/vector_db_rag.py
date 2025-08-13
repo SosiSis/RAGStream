@@ -14,17 +14,25 @@ logger = logging.getLogger()
 def setup_logging():
     logger.setLevel(logging.INFO)
 
-    # File handler
-    file_handler = logging.FileHandler(os.path.join(OUTPUTS_DIR, "rag_assistant.log"))
-    file_handler.setLevel(logging.INFO)
-
-    # Console handler
+    # Console handler (always available)
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
-
-    # Add handlers to the logger
-    logger.addHandler(file_handler)
     logger.addHandler(console_handler)
+
+    # File handler (only if directory exists and is writable)
+    try:
+        # Create outputs directory if it doesn't exist
+        os.makedirs(OUTPUTS_DIR, exist_ok=True)
+        
+        # Check if directory is writable
+        log_file_path = os.path.join(OUTPUTS_DIR, "rag_assistant.log")
+        file_handler = logging.FileHandler(log_file_path)
+        file_handler.setLevel(logging.INFO)
+        logger.addHandler(file_handler)
+        logger.info(f"Logging to file: {log_file_path}")
+    except Exception as e:
+        logger.warning(f"Could not set up file logging: {e}")
+        logger.info("Logging to console only")
 
 
 load_dotenv()
