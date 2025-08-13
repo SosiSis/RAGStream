@@ -1,5 +1,4 @@
 import os
-import torch
 import chromadb
 import shutil
 from scripts.paths import VECTOR_DB_DIR
@@ -88,14 +87,9 @@ def embed_documents(documents: list[str]) -> list[list[float]]:
     """
     Embed documents using a model.
     """
-    device = (
-        "cuda"
-        if torch.cuda.is_available()
-        else "mps" if torch.backends.mps.is_available() else "cpu"
-    )
     model = HuggingFaceEmbeddings(
         model_name="sentence-transformers/all-MiniLM-L6-v2",
-        model_kwargs={"device": device},
+        model_kwargs={"device": "cpu"},
     )
 
     embeddings = model.embed_documents(documents)
