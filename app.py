@@ -4,7 +4,7 @@ import logging
 from dotenv import load_dotenv
 from scripts.utils import load_yaml_config
 from scripts.prompt_builder import build_prompt_from_config
-from scripts.vector_db_rag import retrieve_relevant_documents, setup_logging, get_system_status
+from scripts.vector_db_rag import retrieve_relevant_documents, setup_logging
 from scripts.paths import APP_CONFIG_FPATH, PROMPT_CONFIG_FPATH
 from langchain_groq import ChatGroq
 import time
@@ -194,30 +194,9 @@ def main():
                         st.markdown(f"**Document {i}:**")
                         st.text(doc[:500] + "..." if len(doc) > 500 else doc)
                         st.divider()
-            else:
-                with st.expander("📚 Document Search Results"):
-                    st.warning("No relevant documents found")
-                    st.info("This could be due to:")
-                    st.info("• ChromaDB running in fallback mode")
-                    st.info("• No documents matching your query")
-                    st.info("• System compatibility issues")
     
     # Sidebar actions
     with st.sidebar:
-        # System Status
-        st.markdown("### 🔧 System Status")
-        try:
-            system_status = get_system_status()
-            if system_status["chromadb_available"]:
-                st.success("✅ ChromaDB: Operational")
-            else:
-                st.warning("⚠️ ChromaDB: Fallback Mode")
-                st.info("Vector search is limited due to SQLite3 compatibility")
-            
-            st.info(f"Status: {system_status['status']}")
-        except Exception as e:
-            st.error(f"❌ Status check failed: {e}")
-        
         st.markdown("---")
         
         # Clear chat button
