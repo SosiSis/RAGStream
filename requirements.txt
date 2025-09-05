@@ -28,4 +28,4 @@ tqdm==4.67.1
 colorama==0.4.6
 click==8.2.1
 rich==14.1.0
-pysqlite3-binary==0.5.2.post1
+pysqlite3-binary==0.5.4
