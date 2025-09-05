@@ -181,4 +181,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Ready to explore AI/ML research with intelligent conversations?** 
-[![Try RAGStream Now](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ragstream.streamlit.app/)
+[![Try RAGStream Now](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ragstream-utrzbfzjw5vp5wtkgdc3et.streamlit.app/)
