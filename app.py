@@ -1,3 +1,22 @@
+# Fix for SQLite version compatibility on Streamlit Cloud
+import sys
+import subprocess
+import importlib
+
+# Install and setup pysqlite3 for Streamlit Cloud
+try:
+    # Try to import pysqlite3 and replace sqlite3 module
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    # If pysqlite3 is not available, try to install it
+    try:
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'pysqlite3-binary'])
+        __import__('pysqlite3')
+        sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+    except:
+        pass  # Fall back to system sqlite3
+
 import streamlit as st
 import os
 import logging
