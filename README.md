@@ -1,6 +1,6 @@
 # RAGStream 🔍✨
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ragstream.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ragstream-utrzbfzjw5vp5wtkgdc3et.streamlit.app/)
 
 > **An intelligent RAG (Retrieval-Augmented Generation) system powered by Streamlit that answers questions about AI/ML research papers and tutorials.**
 
