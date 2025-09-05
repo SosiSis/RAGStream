@@ -167,7 +167,7 @@ cython_debug/
 .vscode/
 
 # Project-specific ignores
-outputs/
+
 data/*.md
 data/*.yaml
 vector_db/
