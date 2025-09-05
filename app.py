@@ -176,6 +176,16 @@ with st.sidebar:
 def main():
     st.markdown('<h1 class="main-header">🤖 RAG Assistant</h1>', unsafe_allow_html=True)
     
+    # Welcome message and description
+    if not st.session_state.messages:
+        st.markdown("""
+        <div style="text-align: center; margin-bottom: 2rem; padding: 1rem; background-color: #f0f2f6; border-radius: 0.5rem;">
+            <h3>🔍 Intelligent AI/ML Research Assistant</h3>
+            <p>Ask me anything about <strong>Computer Vision</strong>, <strong>Generative Models</strong>, <strong>Time Series Analysis</strong>, and <strong>Machine Learning</strong>!</p>
+            <p>I have knowledge about CLIP, VAEs, Distance Profiles, Class Imbalance, and more. Check the sidebar for example questions and available documents.</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
     # Display chat messages
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
@@ -216,6 +226,70 @@ def main():
     
     # Sidebar actions
     with st.sidebar:
+        st.markdown("---")
+        
+        # Information about the system
+        st.markdown("## 📊 Knowledge Base")
+        
+        # Data information
+        with st.expander("📚 Available Documents"):
+            st.markdown("""
+            **Current Publications:**
+            
+            🎨 **CLIP Implementation Guide**
+            - Multi-modal learning with Vision Transformers
+            - Contrastive learning techniques
+            - Image-text alignment
+            
+            🔄 **VAE Comprehensive Study**  
+            - Variational Autoencoders applications
+            - Data compression and generation
+            - Anomaly detection and denoising
+            
+            📈 **Distance Profile Analysis**
+            - Time series pattern recognition
+            - Similarity search algorithms
+            - Time-step classification
+            
+            ⚖️ **Class Imbalance Study**
+            - Binary classification techniques
+            - SMOTE and class weight methods
+            - Evaluation metrics for imbalanced data
+            """)
+        
+        # Sample questions
+        with st.expander("💡 Example Questions"):
+            st.markdown("""
+            **Computer Vision & Multi-Modal:**
+            - "What is CLIP and how does it work?"
+            - "How does contrastive learning align images and text?"
+            - "Explain Vision Transformers in CLIP"
+            
+            **Generative Models:**
+            - "What are VAEs and how do they differ from autoencoders?"
+            - "How do VAEs handle data compression?"
+            - "What is the reparameterization trick?"
+            
+            **Time Series Analysis:**
+            - "What is distance profile in time series?"
+            - "How does MASS algorithm work?"
+            - "Explain time-step classification"
+            
+            **Machine Learning:**
+            - "How to handle class imbalance?"
+            - "What is SMOTE and when to use it?"
+            - "Best metrics for imbalanced datasets?"
+            """)
+        
+        # Quick tips
+        with st.expander("🎯 Tips for Better Results"):
+            st.markdown("""
+            - **Be specific**: Ask about particular concepts or methods
+            - **Follow up**: Build on previous questions for deeper insights
+            - **Context matters**: Reference specific papers or topics
+            - **Adjust settings**: Fine-tune retrieval parameters in the sidebar
+            """)
+        
         st.markdown("---")
         
         # Clear chat button
