@@ -170,7 +170,7 @@ cython_debug/
 
 data/*.md
 data/*.yaml
-vector_db/
+
 *.log
 
 # OS generated files
